@@ -1,0 +1,17 @@
+export ANTHROPIC_API_KEY="voc-186405335321610655414096ac8468a89bcc7.37862801"
+export ANTHROPIC_BASE_URL="https://claude.vocareum.com"
+
+
+cd <system-directory>
+python -m venv .venv && source .venv/bin/activate
+pip install -e ".[dev]"
+pytest tests/ -v
+deactivate
+
+
+python -c "import sys; print(sys.version)"   # 3.11+
+pytest tests/ -q                              # all pass
+
+python -c "import os; print('key set:', bool(os.environ.get('ANTHROPIC_API_KEY')), '| base_url:', os.environ.get('ANTHROPIC_BASE_URL'))"
+
+
